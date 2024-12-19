@@ -13,20 +13,17 @@ users = {
     "librarian": {"username": "librarian", "password": "librarian123", "role": "librarian"},
 }
 
-# In-memory storage for books
 books = {}
 book_id_counter = 1
 
-# Function to generate JWT token
 def generate_token(username, role):
     payload = {
         "username": username,
         "role": role,
-        "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  # Token valid for 1 hour
+        "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)  
     }
     return jwt.encode(payload, SECRET_KEY, algorithm="HS256")
 
-# Endpoint to login and get a token
 @app.route('/login', methods=['POST'])
 def login():
     data = request.json
@@ -39,7 +36,6 @@ def login():
         return jsonify({"token": token})
     return jsonify({"error": "Invalid credentials"}), 401
 
-# Middleware for role-based authentication
 @app.before_request
 def authenticate_and_authorize():
     if request.endpoint == "login":
