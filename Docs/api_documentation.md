@@ -269,6 +269,4 @@ Authentication is required for accessing most of the API endpoints. Token-based 
   }
   ```
 
-## Pagination
 
-For listing books, the API can be modified to return a limited number of books per page. Pagination parameters like `page` and `per_page` should be added in the query string to control the number of results returned per page.
